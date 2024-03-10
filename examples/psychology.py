@@ -1,4 +1,8 @@
-"""An example to convert images of notes of an anatomy and physiology textbook into digital form."""
+"""An example to convert images of notes of William James' The Principles of Psychology into digital form.
+
+Usage:
+    `poetry run python examples/psychology.py --input_folder [] --output_folder []`
+"""
 
 import configmate
 import os
@@ -9,8 +13,8 @@ from papyrusai import converting, models
 
 def main(input_folder: os.PathLike, output_folder: os.PathLike) -> None:
     config = configmate.get_config(
-        "config/anatomy.yaml",
-        section="AnatomyAndPhysiologyTextbook",
+        "config/psychology.yaml",
+        section="ThePrinciplesOfPsychology",
         validation=models.ImageToTextPrompt,
     )
     converting.run_on_folder(config, input_folder, output_folder)

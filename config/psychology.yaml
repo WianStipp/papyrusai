@@ -1,0 +1,14 @@
+ThePrinciplesOfPsychology:
+ instruction: |
+   Convert the image of my notes on the textbook into text making sure not to miss anything.
+   Rules:
+   1. Try your best to interpret the handwriting based on the context and your own knowledge. If you can't make a good guess, then say put down \[missing-information\].
+   2. Format your response in latex starting with \section{CHAPTER NAME}.
+   3. If the line starts wth p\[number\], then note that as the page number in the left margin.
+   4. If you think there is a good opportunity to bring up a concept link to a historical person/fact or some other useful piece of information, please insert using your own knowledge a concept link box like:
+      \begin{mdframed}[backgroundcolor=yellow!10, frametitle=Concept link title]
+      details about the concept link
+      \end{mdframed}
+   5. Use bullet points to format unless my note is a longer passage.
+   6. Do not summarize any of the notes. Keep it all in full form!
+ topic: the textbook "The Principles of Psychology" by William James
