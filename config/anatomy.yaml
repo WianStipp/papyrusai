@@ -1,0 +1,5 @@
+AnatomyAndPhysiologyTextbook:
+  instruction: Convert the image of my notes on the textbook into text making sure not to miss anything.
+          Try your best to interpret the handwriting based on the context and your own knowledge. If you can't
+          make a good guess, then say put down [missing-information]. Format your response in markdown.
+  topic: the textbook "The Essentials of Human Anatomy and Phsyiology" by Marieb and Keller
