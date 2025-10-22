@@ -1,10 +1,11 @@
 """This module contains code to read from image / input to an intermediate form."""
 
-from typing import Dict, Any
+from typing import Dict, Any, Tuple
 import abc
 import os
 import requests
 import base64
+import mimetypes
 
 
 class Reader(abc.ABC):
@@ -16,7 +17,7 @@ class GPTImageReader(Reader):
     def __init__(self, path_to_image: os.PathLike, prompt: str) -> None:
         super().__init__()
         self.prompt = prompt
-        self._encoded_image = self._encode_image(path_to_image)
+        self._encoded_image, self._mime_type = self._encode_image(path_to_image)
 
     def read(self) -> str:
         payload = self._get_payload()
@@ -39,7 +40,7 @@ class GPTImageReader(Reader):
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/jpeg;base64,{self._encoded_image}"
+                                "url": f"data:{self._mime_type};base64,{self._encoded_image}"
                             },
                         },
                     ],
@@ -56,6 +57,22 @@ class GPTImageReader(Reader):
         }
 
     @staticmethod
-    def _encode_image(path_to_image: os.PathLike) -> bytes:
+    def _encode_image(path_to_image: os.PathLike) -> Tuple[str, str]:
         with open(path_to_image, "rb") as f:
-            return base64.b64encode(f.read()).decode("utf-8")
+            encoded = base64.b64encode(f.read()).decode("utf-8")
+        return encoded, GPTImageReader._guess_mime_type(path_to_image)
+
+    @staticmethod
+    def _guess_mime_type(path_to_image: os.PathLike) -> str:
+        extension = os.path.splitext(path_to_image)[1].lower()
+        custom_mapping = {
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".heic": "image/heic",
+            ".heif": "image/heif",
+        }
+        if extension in custom_mapping:
+            return custom_mapping[extension]
+        guessed, _ = mimetypes.guess_type(path_to_image)
+        return guessed or "application/octet-stream"

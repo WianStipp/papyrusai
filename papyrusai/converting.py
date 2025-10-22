@@ -12,8 +12,10 @@ def run_on_folder(
     output_folder: os.PathLike,
 ) -> None:
     os.makedirs(output_folder, exist_ok=True)
+    supported_extensions = {".jpg", ".jpeg", ".png", ".heic", ".heif"}
     for path in tqdm.tqdm(sorted(os.listdir(input_folder))):
-        if not path.endswith(("jpg", "png", "jpeg")):
+        _, extension = os.path.splitext(path)
+        if extension.lower() not in supported_extensions:
             continue
         fullpath = os.path.join(input_folder, path)
         output_fn = f"output_{path.split('.')[0]}.txt"
