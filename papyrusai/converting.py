@@ -10,22 +10,37 @@ def run_on_folder(
     promptable: models.Promptable,
     input_folder: os.PathLike,
     output_folder: os.PathLike,
+    heic_output_format: str = "png",
 ) -> None:
     os.makedirs(output_folder, exist_ok=True)
+    supported_extensions = {".jpg", ".jpeg", ".png", ".heic", ".heif"}
     for path in tqdm.tqdm(sorted(os.listdir(input_folder))):
-        if not path.endswith(("jpg", "png", "jpeg")):
+        _, extension = os.path.splitext(path)
+        if extension.lower() not in supported_extensions:
             continue
         fullpath = os.path.join(input_folder, path)
         output_fn = f"output_{path.split('.')[0]}.txt"
         output_path = os.path.join(output_folder, output_fn)
         if output_fn in os.listdir(output_folder):
             continue
-        convert_image_from_path(promptable, fullpath, output_path)
+        convert_image_from_path(
+            promptable,
+            fullpath,
+            output_path,
+            heic_output_format=heic_output_format,
+        )
 
 
 def convert_image_from_path(
-    promptable: models.Promptable, image_path: os.PathLike, save_path: os.PathLike
+    promptable: models.Promptable,
+    image_path: os.PathLike,
+    save_path: os.PathLike,
+    heic_output_format: str = "png",
 ) -> None:
     writer = writing.FileWriter(save_path)
-    reader = reading.GPTImageReader(image_path, promptable.prompt())
+    reader = reading.GPTImageReader(
+        image_path,
+        promptable.prompt(),
+        heic_output_format=heic_output_format,
+    )
     writer.write(reader.read())

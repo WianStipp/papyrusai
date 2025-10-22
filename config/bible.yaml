@@ -1,0 +1,11 @@
+TheBible:
+  instruction: |
+    Convert the image of my notes on the Bible into text making sure not to miss anything.
+    Try your best to interpret the handwriting based on the context and your own knowledge.
+    Rules:
+    1. Try your best to interpret the handwriting based on the context and your own knowledge. If you can't make a good guess, then put down [missing-information].
+    2. Format your response in markdown starting with chapter headings (if it exists) as H3.
+    3. Format tables, quotations, etc. in markdown.
+    4. If the line starts with p[number], then note that as the page number in the left margin.
+    5. Do not summarize any of the notes. Keep it all in full form!
+  topic: The Bible.
