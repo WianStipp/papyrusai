@@ -5,7 +5,7 @@ I like [handwritten notes](https://wianstipp.com/100-books), but I like Obsidian
 This is a tool I use to turn handwritten notes into digitial documents by sending them through a vision LLM with a controlable prompt.
 
 ## Highlights
-- Works with folders of `.jpg`, `.jpeg`, `.png`, `.heic`, or `.heif` images.
+- Works with folders of `.jpg`, `.jpeg`, `.png`, `.heic`, or `.heif` images; HEIC/HEIF files are auto-converted to your chosen PNG/JPEG/WEBP/GIF format before they are sent to the model.
 - Lets you define detailed extraction prompts (topic, formatting rules, etc.).
 - Ships with ready-made examples for textbook note transcription.
 - Outputs plain text files you can drop into Obsidian, Notion, etc.
@@ -56,12 +56,15 @@ prompt = models.ImageToTextPrompt(
 
 converting.convert_image_from_path(
     prompt,             # anything that implements Promptable.prompt()
-    "note-page.jpg",    # input image path
+    "note-page.heic",   # input image path
     "note-page.txt",    # where to write the transcription
+    heic_output_format="png",  # optional: choose png/jpeg/webp/gif for HEIC sources
 )
 ```
 
 For batch conversion you can call `converting.run_on_folder(prompt, input_dir, output_dir)`.
+
+Set `heic_output_format` (defaults to `"png"`) to control which format HEIC/HEIF files are converted to before they are sent to the vision model.
 
 ## Customize Prompts
 
