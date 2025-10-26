@@ -62,7 +62,7 @@ converting.convert_image_from_path(
 )
 ```
 
-For batch conversion you can call `converting.run_on_folder(prompt, input_dir, output_dir)`.
+For batch conversion you can `await converting.run_on_folder(prompt, input_dir, output_dir, max_concurrency=5)` to process multiple images concurrently, or call `converting.run_on_folder_sync(...)` to block in a script or CLI.
 
 Set `heic_output_format` (defaults to `"png"`) to control which format HEIC/HEIF files are converted to before they are sent to the vision model.
 

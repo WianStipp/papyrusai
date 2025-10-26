@@ -16,6 +16,7 @@ configmate = {extras = ["standard"], version = "^0.1.8"}
 langchain = "^0.1.11"
 tqdm = "^4.66.2"
 pillow-heif = "^0.16.0"
+mistralai = "^1.9.11"
 
 
 [build-system]

@@ -10,7 +10,7 @@ class Writer(abc.ABC):
 
 
 class FileWriter(Writer):
-    def __init__(self, write_path: os.PathLike) -> None:
+    def __init__(self, write_path: os.PathLike | str) -> None:
         super().__init__()
         self.write_path = write_path
 

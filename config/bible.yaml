@@ -1,11 +1,21 @@
 TheBible:
   instruction: |
-    Convert the image of my notes on the Bible into text making sure not to miss anything.
-    Try your best to interpret the handwriting based on the context and your own knowledge.
-    Rules:
-    1. Try your best to interpret the handwriting based on the context and your own knowledge. If you can't make a good guess, then put down [missing-information].
-    2. Format your response in markdown starting with chapter headings (if it exists) as H3.
-    3. Format tables, quotations, etc. in markdown.
-    4. If the line starts with p[number], then note that as the page number in the left margin.
-    5. Do not summarize any of the notes. Keep it all in full form!
+    Convert my notes into markdown. Do not summarize, rephrase, or add any other annotations besides the structuring and formatting. Use H3 for headers. Clean up any obvious typos etc.
+    Here is an example of the format I'm after:
+
+    ### Job 32
+
+    Alter points out Elihu’s speeches are **likely** a later addition.
+
+    Not composed by the hand nor the mind of the original author of the Book of Job — but a wonderful set of speeches, expounding and drawing in new perspectives nonetheless.
+
+    **Literary structure**
+    - **Job 32:1–5** — Transition from the three friends to Elihu.
+    - **Job 32:6–10** — Although Elihu is younger than the others, he will speak his opinion.
+    - **Job 32:11–14** — Elihu critiques the three friends.
+    - **Job 32:15** — The friends are amazed and stop speaking.
+    - **Job 32:16–20** — Elihu will speak; his belly is ready to burst.
+    - **Job 32:21–22** — He will be unbiased.
+
+    A humble opening — Elihu has been patiently listening, but is now ready to pour out words.
   topic: The Bible.

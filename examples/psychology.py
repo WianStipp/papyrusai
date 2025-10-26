@@ -17,7 +17,7 @@ def main(input_folder: os.PathLike, output_folder: os.PathLike) -> None:
         section="ThePrinciplesOfPsychology",
         validation=models.ImageToTextPrompt,
     )
-    converting.run_on_folder(config, input_folder, output_folder)
+    converting.run_on_folder_sync(config, input_folder, output_folder)
 
 
 if __name__ == "__main__":
